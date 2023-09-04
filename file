@@ -1,0 +1,31 @@
+<input type='hidden' name='members' value="{JSON.stringify(members_in)}" />
+        <label for="username">Miembros involucrados</label><br>
+            <div class="col border p-3">
+                <div class="col">
+                    {#if members_in < 1}
+                        <div class="alert p-2 rounded-0 mb-0" role="alert" >
+                            Sin Miembros
+                        </div>
+                    {/if}
+                    {#each members_in as members_in, index}
+                    <div class="p-3 mb-2 d-flex justify-content-between bg-dark">
+                        <span>{members_in.username}</span>
+                        <button class="bg-danger" on:click={() => remove(index)} type="button"><i class="fa-solid fa-x"></i></button>
+                    </div>
+                    {/each}
+                </div>
+            </div>
+            <div class="col border p-3 mt-3">
+                <div class="col d-flex justify-content-between py-3">
+                    <span class="fw-bold">Miembros Registrados</span>
+                    <a href="/members"><i class="fa-solid fa-plus"></i> Añadir mas Miembros</a>
+                </div>
+                <div class="col">
+                    {#each data.members as member}
+                    <div class="p-3 mb-2 d-flex justify-content-between bg-dark align-items-center">
+                        <span>{member.username}</span>
+                        <button class="bg-primary" on:click={() => add(member.username, member.id)} type="button"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    {/each}
+                </div>
+            </div>
