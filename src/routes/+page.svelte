@@ -30,7 +30,7 @@
       </div>
       <div class="mt-14 flex justify-center items-center">
           <form class="relative w-full md:w-3/4 -z-0" action="?/create" method="post" use:enhance>
-              <input type="text" name="name" class="sm:p-5 p-3 w-full text-xl rounded-l-lg" placeholder="Musik (Artist)" required>
+              <input type="text" name="name" class="sm:p-5 p-3 w-full text-xl rounded-lg" placeholder="Musik (Artist)" required>
               <button type="submit" class="absolute top-0 right-0 p-2.5 h-full sm:text-xl font-bold text-white bg-three rounded-r-lg ">SENDEN</button>
           </form>
       </div>
@@ -49,7 +49,7 @@
     </div>
     <div class="mt-5">
       {#each data.playlistTracks as song, index}
-        <a class=" bg-white p-4 flex flex-row items-center rounded-md mb-3 hover:bg-gray-200" href="{song.track.uri}">
+        <a class="relative overflow-hidden bg-white p-4 flex flex-row items-center rounded-md mb-3 hover:bg-gray-200" href="{song.track.uri}">
           <span class="font-bold text-xl mx-2">{index+1}</span>
           <img class="mx-2 w-16 h-16 rounded-md" src="{song.track.album.images[0].url}" alt="spotify-thumnail">
           <div class="mx-2">
@@ -65,6 +65,17 @@
       {/each}
     </div>
   </div>
+
+  <footer>
+    <div class="p-5 text-center">
+      <span class="text-sm">© 2023 Copyright | Created by </span>
+      <a
+        class="text-sm font-semibold text-neutral-600 dark:text-neutral-400"
+        href="https://lucasdev.app"
+        >Lucas Heidebrecht</a
+      >
+    </div>
+  </footer>
 
   {#if form?.success}
   <div class="fixed p-5 top-0 right-0 animate-fade-left animate-once animate-ease-linear animate-duration-5000">
