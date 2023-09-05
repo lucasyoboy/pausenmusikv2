@@ -1,11 +1,11 @@
 // src/hooks.server.js
-import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
+import { PUBLIC_POCKETBASE_URL, PUBLIC_SPOTIFY_CLIENT, PUBLIC_SPOTIFY_SECRET } from '$env/static/public';
 import PocketBase from 'pocketbase';
 import { Client } from "spotify-api.js";
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
-    event.locals.spotifyApi = await Client.create({ token: { clientID: 'f71382c59fd8420ab3c5a1ce22354484', clientSecret: '29ea49ce9e7f4e5d9a7b9aa51cc571ac' } });
+    event.locals.spotifyApi = await Client.create({ token: { clientID: PUBLIC_SPOTIFY_CLIENT, clientSecret: PUBLIC_SPOTIFY_SECRET } });
 
     event.locals.pb = new PocketBase(PUBLIC_POCKETBASE_URL);
 
