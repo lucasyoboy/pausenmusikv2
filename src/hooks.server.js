@@ -5,7 +5,11 @@ import { Client } from "spotify-api.js";
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
+<<<<<<< HEAD
     event.locals.spotifyApi = await Client.create({ token: { clientID: PUBLIC_SPOTIFY_CLIENT, clientSecret: PUBLIC_SPOTIFY_SECRET } });
+=======
+    event.locals.spotifyApi = await Client.create({ token: { clientID: '', clientSecret: '' } });
+>>>>>>> c7ad16277f7cedc9a8c33cd8ea8330400b31ba64
 
     event.locals.pb = new PocketBase(PUBLIC_POCKETBASE_URL);
 
