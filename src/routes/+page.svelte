@@ -1,7 +1,7 @@
 <script>
   import { enhance } from '$app/forms';
-  import PopupHistroy from '../lib/history.svelte'
-  import PopupNew from '../lib/new.svelte'
+  import PopupHistroy from '../lib/client/components/modals/history.svelte'
+  import PopupNew from '../lib/client/components/modals/new.svelte'
   import { toggleHistory, toggleNew } from '../lib/stores';
 
   export let data;
@@ -16,8 +16,7 @@
 </script>
 
 <PopupHistroy data={data.trackHistory}/>
-<PopupNew />
-<div class="container-fluid font-montserrat">
+<div class="container-fluid font-montserrat bg-gray-100">
   <div class="bg-[url('../images/background.webp')] bg-cover p-0 md:p-16">
     <div class="bg-primery bg-opacity-80 p-6 md:p-20">
       <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
@@ -56,7 +55,7 @@
             <span class="font-semibold text-xl">{song.track.name}</span>
             <p class="text-lg">
               {#each song.track.artists as artist}
-                {artist.name}
+                {artist.name}&nbsp;
               {/each}
             </p>
           </div>
@@ -106,9 +105,3 @@
 
 
 </div>
-  
-  <style lang="postcss">
-    :global(html) {
-      background-color: theme(colors.gray.100);
-    }
-  </style>

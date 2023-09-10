@@ -1,5 +1,5 @@
 <script>
-    import { toggleHistory } from './stores';
+    import { toggleHistory } from '../../../stores';
     export let data;
 </script>
 

@@ -1,5 +1,5 @@
 <script>
-    import { toggleNew } from './stores';
+    import { toggleNew } from '../../../stores';
 </script>
 
 {#if $toggleNew}

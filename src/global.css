@@ -10,4 +10,8 @@
   font: inherit;
 }
 
+.tooltip:hover .tooltip-item {
+  visibility: visible;
+}
+
 /* =-----------------------------------------------------------= */
