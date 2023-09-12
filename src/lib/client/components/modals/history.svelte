@@ -37,6 +37,13 @@
                   </div>
                 </div>
                 {/each}
+                {#if data.items < 1}
+                <div class=" bg-white p-4 flex flex-row items-center rounded-md mb-3">
+                  <div class="mx-2">
+                    <span class="font-semibold text-lg">Nichts wurde kürzlich hinzugefügt!</span>
+                  </div>
+                </div>
+                {/if}
               </div>
             </div>
           </div>

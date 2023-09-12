@@ -16,13 +16,9 @@ export const actions = {
 		const formData = await request.formData();
 		const data = Object.fromEntries([...formData]);
 
+		console.log(data.id);
 		try {
-			if(data.accept){
-				await locals.pb.collection('pausenmusik').update(data.accept, {"approved": true});
-			}
-			if(data.decline){
-				await locals.pb.collection('pausenmusik').update(data.decline, {"approved": false});
-			}
+			await locals.pb.collection('pausenmusik').update(data.id, {"approved": data.action});
 			return {success: true}
 		} catch (err) {
 			console.log('Error:', err);

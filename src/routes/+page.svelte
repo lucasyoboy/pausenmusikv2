@@ -17,7 +17,7 @@
 
 <PopupHistroy data={data.trackHistory}/>
 <div class="container-fluid font-montserrat bg-gray-100">
-  <div class="bg-[url('../images/background.webp')] bg-cover p-0 md:p-16">
+  <div class="bg-[url('/images/background.webp')] bg-cover p-0 md:p-16">
     <div class="bg-primery bg-opacity-80 p-6 md:p-20">
       <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
         <div class="text-center lg:text-left">
@@ -62,6 +62,13 @@
           <span class="font-bold text-xl ml-auto">{millisToMinutesAndSeconds(song.track.duration)}</span>
         </a>
       {/each}
+      {#if data.playlistTracks < 1}
+      <div class="relative overflow-hidden bg-white p-4 flex flex-row items-center rounded-md mb-3">
+        <div class="mx-2">
+          <span class="font-semibold text-lg">Es konnten keine Songs gefunden werden!</span>
+        </div>
+      </div>
+      {/if}
     </div>
   </div>
 

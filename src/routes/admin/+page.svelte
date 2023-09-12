@@ -6,7 +6,7 @@
 </script>
 
 <div class="container-fluid font-montserrat bg-gray-100">
-  <div class="bg-[url('../images/background.webp')] bg-cover">
+  <div class="bg-[url('/images/background.webp')] bg-cover">
     <Header data={data.user} />
     <div class="bg-primery bg-opacity-80 p-6 md:p-20">
         <div class="text-center">
@@ -51,8 +51,9 @@
                           </p>
                         </div>
                         <form method="POST" action="?/update" class="flex flex-col" use:enhance>
-                          <button name="accept" value="{song.id}"><CheckCircle size="30" variation="solid" color="#00FF00 "/></button>
-                          <button name="decline" value="{song.id}"><XCircle size="30" variation="solid" color="#ff0000 "/></button>
+                          <input name="id" value="{song.id}" hidden/>
+                          <button name="action" value="true"><CheckCircle size="30" variation="solid" color="#00FF00 "/></button>
+                          <button name="action" value="false" data-value="false"><XCircle size="30" variation="solid" color="#ff0000 "/></button>
                         </form>
                       </div>
                     </div>
@@ -78,6 +79,13 @@
                     </div>
                   {/if}
                 {/each}
+                {#if data.playList.items < 1}
+                  <div class="relative overflow-hidden bg-white p-4 flex flex-row items-center rounded-md mb-3">
+                    <div class="mx-2">
+                      <span class="font-semibold text-lg">Es konnten keine Songs gefunden werden!</span>
+                    </div>
+                  </div>
+                {/if}
               </div>
               <div class="hidden" id="tab-options">
                 {#each data.playList.items as song}
@@ -96,6 +104,13 @@
                     </div>
                   </div>
               {/each}
+              {#if data.playList.items < 1}
+                  <div class="relative overflow-hidden bg-white p-4 flex flex-row items-center rounded-md mb-3">
+                    <div class="mx-2">
+                      <span class="font-semibold text-lg">Es konnten keine Songs gefunden werden!</span>
+                    </div>
+                  </div>
+                {/if}
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 <script>
   import { enhance } from '$app/forms';
 </script>
-<div class="container-fluid bg-[url('../images/background.webp')] bg-cover grid h-screen place-items-center">
+<div class="container-fluid bg-[url('/images/background.webp')] bg-cover grid h-screen place-items-center">
   <div class="flex flex-col bg-primery w-auto p-5">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <img class="mx-auto h-36 w-auto" src="/images/logo.svg" alt="Your Company">
