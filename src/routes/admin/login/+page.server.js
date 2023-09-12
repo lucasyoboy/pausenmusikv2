@@ -1,4 +1,4 @@
-import { redirect } from '@sveltejs/kit';
+import { error, invalid, redirect } from "@sveltejs/kit";
 import { serializeNonPOJOs } from '../../../lib/utils';
 
 export const load = ({ locals }) => {
@@ -12,18 +12,11 @@ export const actions = {
 		const formData = await request.formData();
 		const data = Object.fromEntries([...formData]);
 
-		console.log(data.username, data.password)
-
 		try {
-			const { token, user } = await locals.pb.collection('pausenmusik_members').authWithPassword(data.username, data.password);
-			return {
-				success: true,
-			};
+			await locals.pb.collection('pausenmusik_members').authWithPassword(data.username, data.password);
 		} catch (err) {
 			console.log('Error:', err);
-			return {
-				success: false,
-			};
+			throw error(err.status, err.message);
 		}
 	},
 };

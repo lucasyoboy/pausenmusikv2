@@ -44,6 +44,7 @@
     "simple-excel-to-json": "^2.3.0",
     "spotify-api.js": "^9.2.5",
     "svelte-device-info": "^1.0.0",
+    "svelte-french-toast": "^1.2.0",
     "svelte-loading-spinners": "^0.3.4",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.7.20",

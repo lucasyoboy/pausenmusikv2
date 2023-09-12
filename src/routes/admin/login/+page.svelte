@@ -1,6 +1,28 @@
 <script>
   import { enhance } from '$app/forms';
+  import toast, { Toaster } from 'svelte-french-toast';
+
+  const submitLogin = () => {
+		return async ({ result, update }) => {
+			switch (result.type) {
+				case 'success':
+          toast.success('Erfolgreich angemeldet');
+					await update();
+					break;
+				case 'invalid':
+					toast.error('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal');
+					await update();
+					break;
+				case 'error':
+					toast.error('Authentifizierung fehlgeschlagen!');
+					break;
+				default:
+					await update();
+			}
+		};
+	};
 </script>
+<Toaster/>
 <div class="container-fluid bg-[url('/images/background.webp')] bg-cover grid h-screen place-items-center">
   <div class="flex flex-col bg-primery w-auto p-5">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -9,7 +31,7 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" action="?/login" method="POST" use:enhance>
+      <form class="space-y-6" action="?/login" method="POST" use:enhance={submitLogin}>
         <div>
           <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
           <div class="mt-2">

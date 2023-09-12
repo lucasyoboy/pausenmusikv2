@@ -22,7 +22,6 @@ export const actions = {
 			return {success: true}
 		} catch (err) {
 			console.log('Error:', err);
-			return {success: false}
 		}
 	},
 	delete: async ({ request, locals }) => {
@@ -34,7 +33,6 @@ export const actions = {
 			return {success: true}
 		} catch (err) {
 			console.log('Error:', err);
-			return {success: false}
 		}
 	},
 };

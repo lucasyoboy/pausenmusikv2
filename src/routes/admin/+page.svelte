@@ -3,8 +3,30 @@
   import Header from '../../lib/admin/partials/header.svelte';
   export let data;
   import { CheckCircle, XCircle, Trash } from 'svelte-heros-v2';
+  import toast, { Toaster } from 'svelte-french-toast';
+
+  const submitLogin = () => {
+		return async ({ result, update }) => {
+			switch (result.type) {
+				case 'success':
+          toast.success('Erfolgreich ausgeführt!');
+					await update();
+					break;
+				case 'invalid':
+					toast.error('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal');
+					await update();
+					break;
+				case 'error':
+					toast.error(result.error.message);
+					break;
+				default:
+					await update();
+			}
+		};
+	};
 </script>
 
+<Toaster />
 <div class="container-fluid font-montserrat bg-gray-100">
   <div class="bg-[url('/images/background.webp')] bg-cover">
     <Header data={data.user} />
@@ -50,11 +72,15 @@
                             {new Date(song.created).toLocaleDateString('de-de', { weekday:"short", year:"numeric", month:"short", day:"numeric"})}
                           </p>
                         </div>
-                        <form method="POST" action="?/update" class="flex flex-col" use:enhance>
-                          <input name="id" value="{song.id}" hidden/>
-                          <button name="action" value="true"><CheckCircle size="30" variation="solid" color="#00FF00 "/></button>
-                          <button name="action" value="false" data-value="false"><XCircle size="30" variation="solid" color="#ff0000 "/></button>
-                        </form>
+                        <div class="flex flex-col">
+                          <form method="POST" action="?/update" use:enhance={submitLogin}>
+                            <input name="id" value="{song.id}" hidden/>
+                            <button name="action" value="true"><CheckCircle size="30" variation="solid" color="#00FF00 "/></button>
+                          </form>
+                          <form method="POST" action="?/delete" use:enhance={submitLogin}>
+                            <button value="{song.id}" name="id"><XCircle size="30" variation="solid" color="#ff0000 "/></button>
+                          </form>
+                        </div>
                       </div>
                     </div>
                   {/if}
@@ -72,7 +98,7 @@
                             {new Date(song.created).toLocaleDateString('de-de', { weekday:"short", year:"numeric", month:"short", day:"numeric"})}
                           </p>
                         </div>
-                        <form method="POST" action="?/delete" use:enhance>
+                        <form method="POST" action="?/delete" use:enhance={submitLogin}>
                           <button value="{song.id}" name="id"><Trash size="30" variation="solid" color="red"/></button>
                         </form>
                       </div>
@@ -98,7 +124,7 @@
                           {new Date(song.created).toLocaleDateString('de-de', { weekday:"short", year:"numeric", month:"short", day:"numeric"})}
                         </p>
                       </div>
-                      <form method="POST" action="?/delete" use:enhance>
+                      <form method="POST" action="?/delete" use:enhance={submitLogin}>
                         <button value="{song.id}" name="id"><Trash size="30" variation="solid" color="red"/></button>
                       </form>
                     </div>
